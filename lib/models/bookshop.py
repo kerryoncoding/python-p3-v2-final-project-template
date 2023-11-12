@@ -13,6 +13,18 @@ class Bookshop:
       return f"<Book ID: {self.id}, Book Title: {self.title}, Author: {self.author}"
    
    @property
+   def Title(self):
+      return self._title
+   
+   @author.setter
+   def author(self, title):
+      if isinstance(title, str) and len(title):
+         self._title = title
+      else:
+         raise ValueError("Title must be a non-empty string")
+
+
+   @property
    def author(self):
       return self._author
    
@@ -21,4 +33,4 @@ class Bookshop:
       if isinstance(author, str) and len(author):
          self._author = author
       else:
-         raise ValueError("Name must be a non-empty string")
+         raise ValueError("Author must be a non-empty string")
