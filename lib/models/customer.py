@@ -24,4 +24,14 @@ class Customer:
       else:
          raise ValueError("Name must be a non-empty string")
 
-      
+   @property
+   def age(self):
+      return self._age
+   
+   @age.setter
+   def age(self, age):
+      if isinstance(age, int) and age < 110:
+         self._age = age
+      else:
+         raise ValueError("Age must be an integer under 110")
+
