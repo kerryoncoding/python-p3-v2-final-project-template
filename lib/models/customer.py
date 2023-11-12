@@ -35,3 +35,15 @@ class Customer:
       else:
          raise ValueError("Age must be an integer under 110")
 
+   @classmethod
+   def create_table(cls):
+      """ Create a new table to persist the attributes of Customer instances """
+      sql = """
+         CREATE TABLE IF NOT EXISTS customers (
+         id INTEGER PRIMARY KEY,
+         name TEXT,
+         age INTEGER,
+         FOREIGN KEY (bookeshop_id) REFERENCES bookshop(id))
+      """
+      CURSOR.execute(sql)
+      CONN.commit()
