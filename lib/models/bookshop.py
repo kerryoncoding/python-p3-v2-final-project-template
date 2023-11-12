@@ -13,11 +13,11 @@ class Bookshop:
       return f"<Book ID: {self.id}, Book Title: {self.title}, Author: {self.author}"
    
    @property
-   def Title(self):
+   def title(self):
       return self._title
    
-   @author.setter
-   def author(self, title):
+   @title.setter
+   def title(self, title):
       if isinstance(title, str) and len(title):
          self._title = title
       else:
