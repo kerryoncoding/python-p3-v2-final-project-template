@@ -4,7 +4,7 @@ from models.__init__ import CURSOR, CONN
 class Bookshop:
    all = {}
 
-   def __init__(self, title, author):
+   def __init__(self, title, author, id=None):
       self.id = id
       self.title = title
       self.author = author
@@ -22,7 +22,6 @@ class Bookshop:
          self._title = title
       else:
          raise ValueError("Title must be a non-empty string")
-
 
    @property
    def author(self):
