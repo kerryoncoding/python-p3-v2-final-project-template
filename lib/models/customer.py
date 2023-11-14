@@ -89,3 +89,10 @@ class Customer:
 
       # Set the id to None
       self.id = None
+
+   @classmethod
+   def create(cls, name, age):
+      """ Initialize a new Customer instance and save the object to the database """
+      customer = cls(name, age)
+      customer.save()
+      return customer
