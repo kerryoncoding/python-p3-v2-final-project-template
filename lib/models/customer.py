@@ -47,3 +47,12 @@ class Customer:
       """
       CURSOR.execute(sql)
       CONN.commit()
+
+   @classmethod
+   def drop_table(cls):
+      """ Drop the table that persists Customer instances """
+      sql = """
+         DROP TABLE IF EXISTS customers;
+      """
+      CURSOR.execute(sql)
+      CONN.commit()
