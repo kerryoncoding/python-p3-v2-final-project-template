@@ -71,3 +71,21 @@ class Customer:
 
       self.id = CURSOR.lastrowid
       type(self).all[self.id] = self
+
+   def delete(self):
+      """Delete the table row corresponding to the current Customer instance,
+      delete the dictionary entry, and reassign id attribute"""
+
+      sql = """
+         DELETE FROM customers
+         WHERE id = ?
+      """
+
+      CURSOR.execute(sql, (self.id,))
+      CONN.commit()
+
+      # Delete the dictionary entry using id as the key
+      del type(self).all[self.id]
+
+      # Set the id to None
+      self.id = None
