@@ -56,19 +56,46 @@ class Bookshop:
       CONN.commit()
 
    def save(self):
-        """ Insert a new row with the name and location values of the current Book instance.
-        Update object id attribute using the primary key value of new row.
-        Save the object in local dictionary using table row's PK as dictionary key"""
-        sql = """
-            INSERT INTO books (title, author)
-            VALUES (?, ?)
-        """
+      """ Insert a new row with the name and location values of the current Book instance.
+      Update object id attribute using the primary key value of new row.
+      Save the object in local dictionary using table row's PK as dictionary key"""
+      sql = """
+         INSERT INTO books (title, author)
+         VALUES (?, ?)
+      """
 
-        CURSOR.execute(sql, (self.title, self.author))
-        CONN.commit()
+      CURSOR.execute(sql, (self.title, self.author))
+      CONN.commit()
 
-        self.id = CURSOR.lastrowid
-        type(self).all[self.id] = self
+      self.id = CURSOR.lastrowid
+      type(self).all[self.id] = self
+
+   @classmethod
+   def create(cls, title, author):
+      """ Initialize a new Book instance and save the object to the database """
+      book = cls(title, author)
+      book.save()
+      return book
+   
+   # skipping update
+
+   def delete(self):
+      """Delete the table row corresponding to the current Book instance,
+      delete the dictionary entry, and reassign id attribute"""
+
+      sql = """
+         DELETE FROM books
+         WHERE id = ?
+      """
+
+      CURSOR.execute(sql, (self.id,))
+      CONN.commit()
+
+      # Delete the book entry using id as the key
+      del type(self).all[self.id]
+
+      # Set the id to None
+      self.id = None
 
    
    
