@@ -133,10 +133,10 @@ class Customer:
    
    @classmethod
    def get_all(cls):
-      """Return a list containing one customer object per table row"""
+      """Return a list containing one Customer object per table row"""
       sql = """
          SELECT *
-         FROM customer
+         FROM customers
       """
 
       rows = CURSOR.execute(sql).fetchall()
