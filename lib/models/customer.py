@@ -72,6 +72,8 @@ class Customer:
       self.id = CURSOR.lastrowid
       type(self).all[self.id] = self
 
+# skipped update
+
    def delete(self):
       """Delete the table row corresponding to the current Customer instance,
       delete the dictionary entry, and reassign id attribute"""

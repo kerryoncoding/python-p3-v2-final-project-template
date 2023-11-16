@@ -33,3 +33,17 @@ class Bookshop:
          self._author = author
       else:
          raise ValueError("Author must be a non-empty string")
+      
+   @classmethod
+   def create_table(cls):
+      """ Create a new table to persist the attributes of Book instances """
+      sql = """
+         CREATE TABLE IF NOT EXISTS books (
+         id INTEGER PRIMARY KEY,
+         title TEXT,
+         author TEXT)
+      """
+      CURSOR.execute(sql)
+      CONN.commit()
+
+   
