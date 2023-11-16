@@ -1,6 +1,6 @@
 # lib/models/customer.py
 from models.__init__ import CURSOR, CONN
-from models.bookshop import Book
+from models.book import Book
 
 class Customer:
    all = {}
@@ -151,3 +151,20 @@ class Customer:
 
       row = CURSOR.execute(sql, (name,)).fetchone()
       return cls.instance_from_db(row) if row else None
+   
+   @classmethod
+   def instance_from_db(cls, row):
+      """Return a Book object having the attribute values from the table row."""
+
+      # Check the book for an existing instance using the row's primary key
+      book = cls.all.get(row[0])
+      if book:
+         # ensure attributes match row values in case local instance was modified
+         book.title = row[1]
+         book.author = row[2]
+      else:
+         # not in dictionary, create new instance and add to dictionary
+         book = cls(row[1], row[2])
+         book.id = row[0]
+         cls.all[book.id] = book
+      return book
