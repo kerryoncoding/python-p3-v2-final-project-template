@@ -5,13 +5,14 @@ from models.book import Book
 class Customer:
    all = {}
 
-   def __init__(self, name, age, id=None):
+   def __init__(self, name, age, customer_id id=None):
       self.id = id
       self.name = name
       self.age = age
+      self.customer_id = customer_id
 
    def __repr__(self):
-      return(f"<Customer ID: {self.id}, Name: {self.name}, age: {self.age}")
+      return(f"<Customer: {self.id}, Name: {self.name}, age: {self.age} " + f"Customer ID: {self.customer_id}>")
    
    @property
    def name(self):
@@ -35,7 +36,17 @@ class Customer:
       else:
          raise ValueError("Age must be an integer under 110")
 
-# skipped id..
+   @property
+   def customer_id(self):
+        return self._customer_id
+
+   @customer_id.setter
+   def customer_id(self, customer_id):
+      if type(customer_id) is int and Customer.find_by_id(customer_id):
+         self._customer_id = customer_id
+      else:
+         raise ValueError(
+               "customer_id must reference a customer in the database")
 
    @classmethod
    def create_table(cls):
@@ -45,7 +56,8 @@ class Customer:
          id INTEGER PRIMARY KEY,
          name TEXT,
          age INTEGER,
-         FOREIGN KEY (bookeshop_id) REFERENCES bookshop(id))
+         customer_id INTEGER,
+         FOREIGN KEY (customer_id) REFERENCES book(id))
       """
       CURSOR.execute(sql)
       CONN.commit()
@@ -64,11 +76,11 @@ class Customer:
       Update object id attribute using the primary key value of new row.
       Save the object in local dictionary using table row's PK as dictionary key"""
       sql = """
-               INSERT INTO customers (name, age)
-               VALUES (?, ?)
+               INSERT INTO customers (name, age, customer_id)
+               VALUES (?, ?, ?)
       """
 
-      CURSOR.execute(sql, (self.name, self.age))
+      CURSOR.execute(sql, (self.name, self.age, self.customer_id))
       CONN.commit()
 
       self.id = CURSOR.lastrowid
@@ -95,9 +107,9 @@ class Customer:
       self.id = None
 
    @classmethod
-   def create(cls, name, age):
+   def create(cls, name, age, customer_id):
       """ Initialize a new Customer instance and save the object to the database """
-      customer = cls(name, age)
+      customer = cls(name, age, customer_id)
       customer.save()
       return customer
    
@@ -111,9 +123,10 @@ class Customer:
          # ensure attributes match row values in case local instance was modified
          customer.name = row[1]
          customer.age = row[2]
+         customer.customer_id = [3]
       else:
          # not in dictionary, create new instance and add to dictionary
-         customer = cls(row[1], row[2])
+         customer = cls(row[1], row[2], row[3])
          customer.id = row[0]
          cls.all[customer.id] = customer
       return customer
@@ -154,8 +167,5 @@ class Customer:
       row = CURSOR.execute(sql, (name,)).fetchone()
       return cls.instance_from_db(row) if row else None
    
-
-
-   # oop... coded this in wrong file vvvvvv
 
   
