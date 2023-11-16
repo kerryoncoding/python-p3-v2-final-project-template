@@ -168,3 +168,28 @@ class Customer:
          book.id = row[0]
          cls.all[book.id] = book
       return book
+   
+   @classmethod
+   def get_all(cls):
+      """Return a list containing a Book object per row in the table"""
+      sql = """
+         SELECT *
+         FROM books
+      """
+
+      rows = CURSOR.execute(sql).fetchall()
+
+      return [cls.instance_from_db(row) for row in rows]
+   
+   @classmethod
+   def find_by_id(cls, id):
+      """Return a Book object corresponding to the table row matching the specified primary key"""
+      sql = """
+         SELECT *
+         FROM books
+         WHERE id = ?
+      """
+
+      row = CURSOR.execute(sql, (id,)).fetchone()
+      return cls.instance_from_db(row) if row else None
+
