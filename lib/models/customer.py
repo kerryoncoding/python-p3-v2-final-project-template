@@ -193,3 +193,17 @@ class Customer:
       row = CURSOR.execute(sql, (id,)).fetchone()
       return cls.instance_from_db(row) if row else None
 
+
+   @classmethod
+   def find_by_name(cls, title):
+      """Return a Book object corresponding to first table row matching specified title"""
+      sql = """
+         SELECT *
+         FROM books
+         WHERE title is ?
+      """
+
+      row = CURSOR.execute(sql, (title,)).fetchone()
+      return cls.instance_from_db(row) if row else None
+   
+   
