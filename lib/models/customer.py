@@ -195,7 +195,7 @@ class Customer:
 
 
    @classmethod
-   def find_by_name(cls, title):
+   def find_by_title(cls, title):
       """Return a Book object corresponding to first table row matching specified title"""
       sql = """
          SELECT *
@@ -206,4 +206,14 @@ class Customer:
       row = CURSOR.execute(sql, (title,)).fetchone()
       return cls.instance_from_db(row) if row else None
    
-   
+   def customers(self):
+      """Return list of customers associated with current book"""
+      from models.customer import Customer
+      sql = """
+         SELECT * FROM customers
+         WHERE customer_id = ?
+      """
+      CURSOR.execute(sql, (self.id,),)
+
+      rows = CURSOR.fetchall()
+      return [Customer.instance_from_db(row) for row in rows]
