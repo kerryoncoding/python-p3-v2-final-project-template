@@ -14,8 +14,7 @@ def seed_database():
 
    #  what is customer_id used for?
     nyc = Book.create("Strand", "New York")
-    philly = Book.create(
-        "Blue Marble", "Philadelphia")
+    philly = Book.create("Blue Marble", "Philadelphia")
     Customer.create("John", 25, nyc.id)
     Customer.create("Dave", 38, nyc.id)
     Customer.create("Mary", 19, philly.id)

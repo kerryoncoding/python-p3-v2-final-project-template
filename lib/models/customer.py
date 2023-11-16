@@ -5,7 +5,7 @@ from models.book import Book
 class Customer:
    all = {}
 
-   def __init__(self, name, age, customer_id id=None):
+   def __init__(self, name, age, customer_id, id=None):
       self.id = id
       self.name = name
       self.age = age
@@ -42,7 +42,7 @@ class Customer:
 
    @customer_id.setter
    def customer_id(self, customer_id):
-      if type(customer_id) is int and Customer.find_by_id(customer_id):
+      if type(customer_id) is str and Customer.find_by_id(customer_id):
          self._customer_id = customer_id
       else:
          raise ValueError(
