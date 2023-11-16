@@ -35,6 +35,8 @@ class Customer:
       else:
          raise ValueError("Age must be an integer under 110")
 
+# skipped id..
+
    @classmethod
    def create_table(cls):
       """ Create a new table to persist the attributes of Customer instances """
@@ -151,6 +153,10 @@ class Customer:
 
       row = CURSOR.execute(sql, (name,)).fetchone()
       return cls.instance_from_db(row) if row else None
+   
+
+
+   # oop... coded this in wrong file vvvvvv
    
    @classmethod
    def instance_from_db(cls, row):
