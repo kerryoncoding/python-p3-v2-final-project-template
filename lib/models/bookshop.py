@@ -46,4 +46,13 @@ class Bookshop:
       CURSOR.execute(sql)
       CONN.commit()
 
+   @classmethod
+   def drop_table(cls):
+      """ Drop the table that persists Book instances """
+      sql = """
+         DROP TABLE IF EXISTS books;
+      """
+      CURSOR.execute(sql)
+      CONN.commit()
+
    
