@@ -1,6 +1,6 @@
 # lib/models/customer.py
 from models.__init__ import CURSOR, CONN
-from models.bookshop import Bookshop
+from models.bookshop import Book
 
 class Customer:
    all = {}

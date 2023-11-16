@@ -1,7 +1,7 @@
 # lib/models/bookshop.py
 from models.__init__ import CURSOR, CONN
 
-class Bookshop:
+class Book:
    all = {}
 
    def __init__(self, title, author, id=None):
