@@ -12,7 +12,6 @@ def seed_database():
 
     # Create seed data
 
-   #  what is customer_id used for?
     book1 = Book.create("The Hobbit", "JRR Tolkin")
     book2 = Book.create("Dracula", "Bram Stoker")
     Customer.create("John", 25, book1.id)
