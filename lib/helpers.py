@@ -11,9 +11,9 @@ def exit_program():
     exit()
 
 def list_books():
-    customers = Customer.get_all()
-    for customer in customers:
-        print(customer)
+    books = Book.get_all()
+    for book in books:
+        print(book)
 
 def find_book_by_title():
     title = input("Enter the book's title: ")
