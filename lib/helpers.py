@@ -37,7 +37,7 @@ def create_book():
     except Exception as exc:
         print("Error creating book: ", exc)
 
-# skipping update
+# skipping update book
 
 def delete_book():
     id_ = input("Enter the book's id: ")
@@ -65,3 +65,31 @@ def find_customer_by_id():
     customer = Customer.find_by_id(id_)
     print(customer) if customer else print(f'Customer {id_} not found')
 
+def create_customer():
+    name = input("Enter the customer's name: ")
+    age = input("Enter the customer's age: ")
+    book_id = input("Enter the customer's Book id:")
+    try:
+        customer = Customer.create(name, age, book_id)
+        print(f'Success: {customer}')
+    except Exception as exc:
+        print("Error creating customer: ", exc)
+
+    # skipping update customer
+
+def delete_customer():
+    id_ = input("Enter the customer's id: ")
+    if customer:= Customer.find_by_id(id_):
+        customer.delete()
+        print(f'Customer {id_} deleted')
+    else:
+        print(f'Customer {id_} not found')
+
+
+def list_book_customers():
+    id_ = input("Enter the book's id: ")
+    if book := Book.find_by_id(id_):
+        for customer in book.customers():
+            print(customer)
+    else:
+        print(f'Customer {id_} not found')   
