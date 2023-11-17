@@ -42,11 +42,10 @@ class Customer:
 
    @book_id.setter
    def book_id(self, book_id):
-      if type(book_id) is int and Customer.find_by_id(book_id):
+      if type(book_id) is int and Book.find_by_id(book_id):
          self._book_id = book_id
       else:
-         raise ValueError(
-               "book_id must reference a book in the database")
+         raise ValueError("book_id must reference a book in the database")
 
    @classmethod
    def create_table(cls):
