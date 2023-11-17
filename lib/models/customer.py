@@ -12,7 +12,7 @@ class Customer:
       self.book_id = book_id
 
    def __repr__(self):
-      return(f"<Customer: {self.id}, Name: {self.name}, age: {self.age} " + f"Customer ID: {self.book_id}>")
+      return(f"<Customer: {self.id}, Name: {self.name}, age: {self.age} " + f"Book ID: {self.book_id}>")
    
    @property
    def name(self):

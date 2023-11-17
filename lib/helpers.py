@@ -56,7 +56,7 @@ def list_customers():
 
 def find_customer_by_name():
     name = input("Enter the customers's name: ")
-    customer = Customer.find_by_name(name)
+    customer = Book.find_by_name(name)
     print(customer) if customer else print(
         f'Customer {name} not found')
     
