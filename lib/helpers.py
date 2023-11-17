@@ -53,3 +53,15 @@ def list_customers():
     customers = Customer.get_all()
     for customer in customers:
         print(customer)
+
+def find_customer_by_name():
+    name = input("Enter the customers's name: ")
+    customer = Customer.find_by_name(name)
+    print(customer) if customer else print(
+        f'Customer {name} not found')
+    
+def find_customer_by_id():
+    id_ = input("Enter the customer's id: ")
+    customer = Customer.find_by_id(id_)
+    print(customer) if customer else print(f'Customer {id_} not found')
+
