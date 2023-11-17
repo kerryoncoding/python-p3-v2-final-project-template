@@ -10,7 +10,7 @@ def exit_program():
     print("Goodbye!")
     exit()
 
-def list_customers():
+def list_books():
     customers = Customer.get_all()
     for customer in customers:
         print(customer)
