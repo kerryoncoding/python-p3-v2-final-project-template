@@ -31,7 +31,7 @@ class Customer:
    
    @age.setter
    def age(self, age):
-      if isinstance(age, int) and age < 110:
+      if isinstance(age, int) and (age < 110):
          self._age = age
       else:
          raise ValueError("Age must be an integer under 110")
