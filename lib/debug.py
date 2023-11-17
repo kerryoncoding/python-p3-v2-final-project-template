@@ -18,11 +18,14 @@ def reset_database():
    #  what is customer_id used for?
    book1 = Book.create("The Hobbit", "JRR Tolkin")
    book2 = Book.create("Dracula", "Bram Stoker")
+   book3 = Book.create("Alice in Wonderland", "Lewis Carroll")
    Customer.create("John", 25, book1.id)
    Customer.create("Dave", 38, book1.id)
    Customer.create("Mary", 19, book2.id)
-   Customer.create("Alex", 27, book2.id)
+   Customer.create("Alex", 27, book3.id)
    Customer.create("Beth", 42, book2.id)
+   Customer.create("Brian", 53, book1.id)
+   Customer.create("Samantha", 20, book3.id)
 
 
 reset_database()
