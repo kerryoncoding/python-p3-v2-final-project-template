@@ -37,3 +37,19 @@ def create_book():
     except Exception as exc:
         print("Error creating book: ", exc)
 
+# skipping update
+
+def delete_book():
+    id_ = input("Enter the book's id: ")
+    if book := Book.find_by_id(id_):
+        book.delete()
+        print(f'Book {id_} deleted')
+    else:
+        print(f'Book {id_} not found')
+
+# Customers...
+
+def list_customers():
+    customers = Customer.get_all()
+    for customer in customers:
+        print(customer)
