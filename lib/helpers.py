@@ -12,5 +12,11 @@ def exit_program():
 
 def list_customers():
     customers = Customer.get_all()
-    for customer in customer:
+    for customer in customers:
         print(customer)
+
+def find_book_by_title():
+    title = input("Enter the book's title: ")
+    book = Book.find_by_title(title)
+    print(book) if book else print(
+        f'Book {title} not found')

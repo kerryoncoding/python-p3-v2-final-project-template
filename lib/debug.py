@@ -16,13 +16,13 @@ def reset_database():
    # Create seed data
 
    #  what is customer_id used for?
-   nyc = Book.create("Strand", "New York")
-   philly = Book.create("Blue Marble", "Philadelphia")
-   Customer.create("John", 25, nyc.id)
-   Customer.create("Dave", 38, nyc.id)
-   Customer.create("Mary", 19, philly.id)
-   Customer.create("Alex", 27, philly.id)
-   Customer.create("Beth", 42, philly.id)
+   book1 = Book.create("The Hobbit", "JRR Tolkin")
+   book2 = Book.create("Dracula", "Bram Stoker")
+   Customer.create("John", 25, book1.id)
+   Customer.create("Dave", 38, book1.id)
+   Customer.create("Mary", 19, book2.id)
+   Customer.create("Alex", 27, book2.id)
+   Customer.create("Beth", 42, book2.id)
 
 
 reset_database()
