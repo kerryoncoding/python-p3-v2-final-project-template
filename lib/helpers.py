@@ -61,7 +61,7 @@ def find_customer_by_firstname():
 
 def find_customer_by_lastname():
     lastname = input(f'\nEnter the customer\'s lastname: \n')
-    customer = Customer.find_by_lastname(ilastname)
+    customer = Customer.find_by_lastname(lastname)
     print(customer) if customer else print(f'\nCustomer lastname: "{lastname}" not found')
     
 def find_customer_by_id():

@@ -71,7 +71,7 @@ def menu():
     print("2: Delete book from on-sale list")
     print("3. List all customers")
     print("4. Find customer by firstname")
-    print("5. Find customer by firstname")
+    print("5. Find customer by lastname")
     print("6. Find customer by id")
     print("7: Create customer")
     # print("x: Update customer")

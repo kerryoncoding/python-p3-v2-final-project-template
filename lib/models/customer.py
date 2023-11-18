@@ -168,5 +168,17 @@ class Customer:
       row = CURSOR.execute(sql, (firstname,)).fetchone()
       return cls.instance_from_db(row) if row else None
    
+   @classmethod
+   def find_by_lastname(cls, lastname):
+      """Return Customer object corresponding to first table row matching specified lastname"""
+      sql = """
+         SELECT *
+         FROM customers
+         WHERE lastname is ?
+      """
+      row = CURSOR.execute(sql, (lastname,)).fetchone()
+      return cls.instance_from_db(row) if row else None
+   
+   
 
   
