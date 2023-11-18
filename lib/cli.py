@@ -10,6 +10,7 @@ from helpers import (
     delete_book,
     list_customers,
     find_customer_by_firstname,
+    find_customer_by_lastname,
     find_customer_by_id,
     create_customer,
     # update_customer,
@@ -41,14 +42,16 @@ def main():
         elif choice == "4":
             find_customer_by_firstname()
         elif choice == "5":
-            find_customer_by_id()
+            find_customer_by_lastname()
         elif choice == "6":
+            find_customer_by_id()
+        elif choice == "7":
             create_customer()
         # elif choice == "x":``
         #     update_customer()
-        elif choice == "7":
-            delete_customer()
         elif choice == "8":
+            delete_customer()
+        elif choice == "9":
             list_book_customers()
         else:
             print("Invalid choice")
@@ -68,11 +71,12 @@ def menu():
     print("2: Delete book")
     print("3. List all customers")
     print("4. Find customer by firstname")
-    print("5. Find customer by id")
-    print("6: Create customer")
+    print("5. Find customer by firstname")
+    print("6. Find customer by id")
+    print("7: Create customer")
     # print("x: Update customer")
-    print("7: Delete customer")
-    print("8: List all customers who bought book")
+    print("8: Delete customer")
+    print("9: List all customers who bought book")
 
 
 if __name__ == "__main__":

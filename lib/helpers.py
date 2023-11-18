@@ -15,17 +15,17 @@ def list_books():
     for book in books:
         print(book)
 
-def find_book_by_title():
-    title = input(f'\nEnter the book\'s title: ')
-    book = Book.find_by_title(title)
-    print(f'\n{book}') if book else print(f'\nBook title: "{title}" not found')
+# def find_book_by_title():
+#     title = input(f'\nEnter the book\'s title: ')
+#     book = Book.find_by_title(title)
+#     print(f'\n{book}') if book else print(f'\nBook title: "{title}" not found')
  
 
-def find_book_by_id():
-    # use a trailing underscore not to override the built-in id function
-    id_ = input(f"\nEnter the book's id: ")
-    book = Book.find_by_id(id_)
-    print(f'\n{book}') if book else print(f'\nBook ID: {id_} not found')
+# def find_book_by_id():
+#     # use a trailing underscore not to override the built-in id function
+#     id_ = input(f"\nEnter the book's id: ")
+#     book = Book.find_by_id(id_)
+#     print(f'\n{book}') if book else print(f'\nBook ID: {id_} not found')
 
 def create_book():
     title = input(f"\nEnter the book's title: ")
@@ -58,6 +58,11 @@ def find_customer_by_firstname():
     firstname = input(f'\nEnter the customer\'s firstname: \n')
     customer = Customer.find_by_firstname(firstname)
     print(customer) if customer else print(f'\nCustomer firstname: "{firstname}" not found')
+
+def find_customer_by_lastname():
+    lastname = input(f'\nEnter the customer\'s lastname: \n')
+    customer = Customer.find_by_lastname(ilastname)
+    print(customer) if customer else print(f'\nCustomer lastname: "{lastname}" not found')
     
 def find_customer_by_id():
     id_ = input(f'\nEnter the customer\'s id: \n')
@@ -66,8 +71,8 @@ def find_customer_by_id():
 
 def create_customer():
     firstname = input(f'\nEnter the customer\'s firstname: ')
-    city = input("Enter the customer's city: ")
-    book_id = input("Enter the customer's Book id: ")
+    city = input("Enter the customer's lastname: ")
+    book_id = input("Enter the customer's purchased Book id: ")
     try:
         customer = Customer.create(firstname, city, int(book_id))
         print(f'\nSuccess: {customer}')
