@@ -33,7 +33,7 @@ def create_book():
     title = input(f"\nEnter the book's title: ")
     author= input("Enter the book's author: ")
     try:
-        book = book.create(title, author)
+        book = Book.create(title, author)
         print(f'\nSuccess: {book}')
     except Exception as exc:
         print("Error creating book: ", exc)
