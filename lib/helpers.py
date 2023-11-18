@@ -69,9 +69,9 @@ def find_customer_by_id():
 def create_customer():
     name = input(f'\nEnter the customer\'s name: ')
     city = input("Enter the customer's city: ")
-    book_id = input("Enter the customer's Book id:")
+    book_id = input("Enter the customer's Book id: ")
     try:
-        customer = Customer.create(name, city, book_id)
+        customer = Customer.create(name, city, int(book_id))
         print(f'\nSuccess: {customer}')
     except Exception as exc:
         print(f'\nError creating customer: ', exc)
