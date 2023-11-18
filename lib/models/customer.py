@@ -13,7 +13,7 @@ class Customer:
 
    def __repr__(self):
       return(
-         f"<Customer ID: {self.id}, FirstName: {self.firstname}, lastname: {self.lastname}, " + 
+         f"<Customer ID: {self.id}, FirstName: {self.firstname}, Lastname: {self.lastname}, " + 
          f"Book ID: {self.book_id}>"
          )
    

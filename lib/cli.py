@@ -3,8 +3,8 @@
 from helpers import (
     exit_program,
     list_books,
-    find_book_by_title,
-    find_book_by_id,
+    # find_book_by_title,
+    # find_book_by_id,
     create_book,
     # update_book,
     delete_book,
@@ -58,7 +58,7 @@ def main():
 
 
 def menu():
-    print(f'\n*** Available books on sale ***')
+    print(f'\n*** Available books on-sale ***')
     list_books()
     print(f'*******************************\n')
     print("Please select an option:")
@@ -66,9 +66,9 @@ def menu():
     # print("1. List books for sale")
     # print("2. Find book by title")
     # print("3. Find book by id")
-    print("1: Add book to on sale list")
+    print("1: Add book to on-sale list")
     # print("x: Update book")
-    print("2: Delete book")
+    print("2: Delete book from on-sale list")
     print("3. List all customers")
     print("4. Find customer by firstname")
     print("5. Find customer by firstname")
