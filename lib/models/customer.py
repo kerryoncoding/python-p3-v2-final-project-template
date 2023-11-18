@@ -5,26 +5,26 @@ from models.book import Book
 class Customer:
    all = {}
 
-   def __init__(self, name, city, book_id, id=None):
+   def __init__(self, firstname, city, book_id, id=None):
       self.id = id
-      self.name = name
+      self.firstname = firstname
       self.city = city
       self.book_id = book_id
 
    def __repr__(self):
       return(
-         f"<Customer ID: {self.id}, Name: {self.name}, city: {self.city}, " + 
+         f"<Customer ID: {self.id}, Name: {self.firstname}, city: {self.city}, " + 
          f"Book ID: {self.book_id}>"
          )
    
    @property
-   def name(self):
+   def firstname(self):
       return self._name
    
-   @name.setter
-   def name(self, name):
-      if isinstance(name, str) and len(name):
-         self._name = name
+   @firstname.setter
+   def firstname(self, firstname):
+      if isinstance(firstname, str) and len(firstname):
+         self._name = firstname
       else:
          raise ValueError("Name must be a non-empty string")
 
@@ -56,7 +56,7 @@ class Customer:
       sql = """
          CREATE TABLE IF NOT EXISTS customers (
          id INTEGER PRIMARY KEY,
-         name TEXT,
+         firstname TEXT,
          city TEXT,
          book_id INTEGER,
          FOREIGN KEY (book_id) REFERENCES books(id))
@@ -74,15 +74,15 @@ class Customer:
       CONN.commit()
    
    def save(self):
-      """ Insert a new row with the name, city, and book id  values of the current Customer object.
+      """ Insert a new row with the firstname, city, and book id  values of the current Customer object.
       Update object id attribute using the primary key value of new row.
       Save the object in local dictionary using table row's PK as dictionary key"""
       sql = """
-               INSERT INTO customers (name, city, book_id)
+               INSERT INTO customers (firstname, city, book_id)
                VALUES (?, ?, ?)
       """
 
-      CURSOR.execute(sql, (self.name, self.city, self.book_id))
+      CURSOR.execute(sql, (self.firstname, self.city, self.book_id))
       CONN.commit()
 
       self.id = CURSOR.lastrowid
@@ -109,9 +109,9 @@ class Customer:
       self.id = None
 
    @classmethod
-   def create(cls, name, city, book_id):
+   def create(cls, firstname, city, book_id):
       """ Initialize a new Customer instance and save the object to the database """
-      customer = cls(name, city, book_id)
+      customer = cls(firstname, city, book_id)
       customer.save()
       return customer
    
@@ -123,7 +123,7 @@ class Customer:
       customer = cls.all.get(row[0])
       if customer:
          # ensure attributes match row values in case local instance was modified
-         customer.name = row[1]
+         customer.firstname = row[1]
          customer.city = row[2]
          customer.book_id = row[3]
       else:
@@ -158,14 +158,14 @@ class Customer:
       return cls.instance_from_db(row) if row else None   
    
    @classmethod
-   def find_by_name(cls, name):
-      """Return Customer object corresponding to first table row matching specified name"""
+   def find_by_name(cls, firstname):
+      """Return Customer object corresponding to first table row matching specified firstname"""
       sql = """
          SELECT *
          FROM customers
-         WHERE name is ?
+         WHERE firstname is ?
       """
-      row = CURSOR.execute(sql, (name,)).fetchone()
+      row = CURSOR.execute(sql, (firstname,)).fetchone()
       return cls.instance_from_db(row) if row else None
    
 

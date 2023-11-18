@@ -12,10 +12,8 @@ def exit_program():
 
 def list_books():
     books = Book.get_all()
-    print(f'\n')
     for book in books:
         print(book)
-    # print(f'\n')
 
 def find_book_by_title():
     title = input(f'\nEnter the book\'s title: ')
@@ -56,10 +54,10 @@ def list_customers():
     for customer in customers:
         print(customer)
 
-def find_customer_by_name():
-    name = input(f'\nEnter the customer\'s name: \n')
-    customer = Customer.find_by_name(name)
-    print(customer) if customer else print(f'\nCustomer name: "{name}" not found')
+def find_customer_by_firstname():
+    firstname = input(f'\nEnter the customer\'s firstname: \n')
+    customer = Customer.find_by_firstname(firstname)
+    print(customer) if customer else print(f'\nCustomer firstname: "{firstname}" not found')
     
 def find_customer_by_id():
     id_ = input(f'\nEnter the customer\'s id: \n')
@@ -67,11 +65,11 @@ def find_customer_by_id():
     print(customer) if customer else print(f'\nCustomer ID: {id_} not found')
 
 def create_customer():
-    name = input(f'\nEnter the customer\'s name: ')
+    firstname = input(f'\nEnter the customer\'s firstname: ')
     city = input("Enter the customer's city: ")
     book_id = input("Enter the customer's Book id: ")
     try:
-        customer = Customer.create(name, city, int(book_id))
+        customer = Customer.create(firstname, city, int(book_id))
         print(f'\nSuccess: {customer}')
     except Exception as exc:
         print(f'\nError creating customer: ', exc)
