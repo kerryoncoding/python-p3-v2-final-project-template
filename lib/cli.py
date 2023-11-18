@@ -55,10 +55,11 @@ def main():
 
 
 def menu():
+    print(f'\n')
     print("Please select an option:")
     print("0. Exit the program")
     print("1. List all books")
-    print("2. Find book by name")
+    print("2. Find book by title")
     print("3. Find book by id")
     print("4: Create book")
     # print("x: Update book")

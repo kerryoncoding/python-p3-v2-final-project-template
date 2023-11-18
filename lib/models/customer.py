@@ -5,14 +5,17 @@ from models.book import Book
 class Customer:
    all = {}
 
-   def __init__(self, name, age, book_id, id=None):
+   def __init__(self, name, city, book_id, id=None):
       self.id = id
       self.name = name
-      self.age = age
+      self.city = city
       self.book_id = book_id
 
    def __repr__(self):
-      return(f"<Customer: {self.id}, Name: {self.name}, age: {self.age} " + f"Book ID: {self.book_id}>")
+      return(
+         f"<Customer ID: {self.id}, Name: {self.name}, city: {self.city}, " + 
+         f"Book ID: {self.book_id}>"
+         )
    
    @property
    def name(self):
@@ -26,15 +29,15 @@ class Customer:
          raise ValueError("Name must be a non-empty string")
 
    @property
-   def age(self):
-      return self._age
+   def city(self):
+      return self._city
    
-   @age.setter
-   def age(self, age):
-      if isinstance(age, int) and (age < 110):
-         self._age = age
+   @city.setter
+   def city(self, city):
+      if isinstance(city, str) and len(city) > 0:
+         self._city = city
       else:
-         raise ValueError("Age must be an integer under 110")
+         raise ValueError("City must be a non-empty string")
 
    @property
    def book_id(self):
@@ -54,9 +57,9 @@ class Customer:
          CREATE TABLE IF NOT EXISTS customers (
          id INTEGER PRIMARY KEY,
          name TEXT,
-         age INTEGER,
+         city TEXT,
          book_id INTEGER,
-         FOREIGN KEY (book_id) REFERENCES book(id))
+         FOREIGN KEY (book_id) REFERENCES books(id))
       """
       CURSOR.execute(sql)
       CONN.commit()
@@ -71,15 +74,15 @@ class Customer:
       CONN.commit()
    
    def save(self):
-      """ Insert a new row with the name, and age of the current Customer object.
+      """ Insert a new row with the name, city, and book id  values of the current Customer object.
       Update object id attribute using the primary key value of new row.
       Save the object in local dictionary using table row's PK as dictionary key"""
       sql = """
-               INSERT INTO customers (name, age, book_id)
+               INSERT INTO customers (name, city, book_id)
                VALUES (?, ?, ?)
       """
 
-      CURSOR.execute(sql, (self.name, self.age, self.book_id))
+      CURSOR.execute(sql, (self.name, self.city, self.book_id))
       CONN.commit()
 
       self.id = CURSOR.lastrowid
@@ -106,9 +109,9 @@ class Customer:
       self.id = None
 
    @classmethod
-   def create(cls, name, age, book_id):
+   def create(cls, name, city, book_id):
       """ Initialize a new Customer instance and save the object to the database """
-      customer = cls(name, age, book_id)
+      customer = cls(name, city, book_id)
       customer.save()
       return customer
    
@@ -121,7 +124,7 @@ class Customer:
       if customer:
          # ensure attributes match row values in case local instance was modified
          customer.name = row[1]
-         customer.age = row[2]
+         customer.city = row[2]
          customer.book_id = [3]
       else:
          # not in dictionary, create new instance and add to dictionary

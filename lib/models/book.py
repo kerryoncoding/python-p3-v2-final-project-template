@@ -1,4 +1,4 @@
-# lib/models/bookshop.py
+# lib/models/book.py
 from models.__init__ import CURSOR, CONN
 
 class Book:
@@ -10,7 +10,7 @@ class Book:
       self.author = author
 
    def __repr__(self):
-      return f"<Book ID: {self.id}, Book Title: {self.title}, Author: {self.author}"
+      return f"<Book ID: {self.id}, Book Title: {self.title}, Author: {self.author}>"
    
    @property
    def title(self):
@@ -56,7 +56,7 @@ class Book:
       CONN.commit()
 
    def save(self):
-      """ Insert a new row with the name and location values of the current Book instance.
+      """ Insert a new row with the title and author values of the current Book instance.
       Update object id attribute using the primary key value of new row.
       Save the object in local dictionary using table row's PK as dictionary key"""
       sql = """
@@ -159,7 +159,7 @@ class Book:
       from models.customer import Customer
       sql = """
          SELECT * FROM customers
-         WHERE customer_id = ?
+         WHERE book_id = ?
       """
       CURSOR.execute(sql, (self.id,),)
 
