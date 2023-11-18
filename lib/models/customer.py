@@ -5,39 +5,39 @@ from models.book import Book
 class Customer:
    all = {}
 
-   def __init__(self, firstname, city, book_id, id=None):
+   def __init__(self, firstname, lastname, book_id, id=None):
       self.id = id
       self.firstname = firstname
-      self.city = city
+      self.lastname = lastname
       self.book_id = book_id
 
    def __repr__(self):
       return(
-         f"<Customer ID: {self.id}, Name: {self.firstname}, city: {self.city}, " + 
+         f"<Customer ID: {self.id}, FirstName: {self.firstname}, lastname: {self.lastname}, " + 
          f"Book ID: {self.book_id}>"
          )
    
    @property
    def firstname(self):
-      return self._name
+      return self._firstname
    
    @firstname.setter
    def firstname(self, firstname):
       if isinstance(firstname, str) and len(firstname):
-         self._name = firstname
+         self._firstname = firstname
       else:
-         raise ValueError("Name must be a non-empty string")
+         raise ValueError("Firstname must be a non-empty string")
 
    @property
-   def city(self):
-      return self._city
+   def lastname(self):
+      return self._lastname
    
-   @city.setter
-   def city(self, city):
-      if isinstance(city, str) and len(city) > 0:
-         self._city = city
+   @lastname.setter
+   def lastname(self, lastname):
+      if isinstance(lastname, str) and len(lastname) > 0:
+         self._lastname = lastname
       else:
-         raise ValueError("City must be a non-empty string")
+         raise ValueError("lastname must be a non-empty string")
 
    @property
    def book_id(self):
@@ -57,7 +57,7 @@ class Customer:
          CREATE TABLE IF NOT EXISTS customers (
          id INTEGER PRIMARY KEY,
          firstname TEXT,
-         city TEXT,
+         lastname TEXT,
          book_id INTEGER,
          FOREIGN KEY (book_id) REFERENCES books(id))
       """
@@ -74,15 +74,15 @@ class Customer:
       CONN.commit()
    
    def save(self):
-      """ Insert a new row with the firstname, city, and book id  values of the current Customer object.
+      """ Insert a new row with the firstname, lastname, and book id  values of the current Customer object.
       Update object id attribute using the primary key value of new row.
       Save the object in local dictionary using table row's PK as dictionary key"""
       sql = """
-               INSERT INTO customers (firstname, city, book_id)
+               INSERT INTO customers (firstname, lastname, book_id)
                VALUES (?, ?, ?)
       """
 
-      CURSOR.execute(sql, (self.firstname, self.city, self.book_id))
+      CURSOR.execute(sql, (self.firstname, self.lastname, self.book_id))
       CONN.commit()
 
       self.id = CURSOR.lastrowid
@@ -109,9 +109,9 @@ class Customer:
       self.id = None
 
    @classmethod
-   def create(cls, firstname, city, book_id):
+   def create(cls, firstname, lastname, book_id):
       """ Initialize a new Customer instance and save the object to the database """
-      customer = cls(firstname, city, book_id)
+      customer = cls(firstname, lastname, book_id)
       customer.save()
       return customer
    
@@ -124,7 +124,7 @@ class Customer:
       if customer:
          # ensure attributes match row values in case local instance was modified
          customer.firstname = row[1]
-         customer.city = row[2]
+         customer.lastname = row[2]
          customer.book_id = row[3]
       else:
          # not in dictionary, create new instance and add to dictionary
@@ -158,7 +158,7 @@ class Customer:
       return cls.instance_from_db(row) if row else None   
    
    @classmethod
-   def find_by_name(cls, firstname):
+   def find_by_firstname(cls, firstname):
       """Return Customer object corresponding to first table row matching specified firstname"""
       sql = """
          SELECT *
