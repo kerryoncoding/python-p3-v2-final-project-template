@@ -52,6 +52,7 @@ def delete_book():
 
 def list_customers():
     customers = Customer.get_all()
+    print(f'\n')
     for customer in customers:
         print(customer)
 
