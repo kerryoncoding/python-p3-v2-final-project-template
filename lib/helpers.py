@@ -15,10 +15,10 @@ def list_books():
     for book in books:
         print(book)
 
-# def find_book_by_title():
-#     title = input(f'\nEnter the book\'s title: ')
-#     book = Book.find_by_title(title)
-#     print(f'\n{book}') if book else print(f'\nBook title: "{title}" not found')
+def find_book_by_title():
+    title = input(f'\nEnter the book\'s title: ')
+    book = Book.find_by_title(title)
+    print(f'\n{book}') if book else print(f'\nBook title: "{title}" not found')
  
 
 # def find_book_by_id():
