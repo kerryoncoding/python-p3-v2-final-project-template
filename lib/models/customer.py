@@ -125,7 +125,7 @@ class Customer:
          # ensure attributes match row values in case local instance was modified
          customer.firstname = row[1]
          customer.lastname = row[2]
-         # customer.book_id = row[3]
+         customer.book_id = row[3]
       else:
          # not in dictionary, create new instance and add to dictionary
          customer = cls(row[1], row[2], row[3])

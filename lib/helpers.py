@@ -41,8 +41,19 @@ def create_book():
 def delete_book():
     id_ = input("Enter the book's id: ")
     if book := Book.find_by_id(id_):
+        # also get's rid of any customer who owns that book
+        for customer in book.customers():
+            customer.delete()
+        # gets rid of book with that ID
         book.delete()
         print(f'\nBook {id_} deleted\n')
+        # also get's rid of any customer who owns that book
+        # for customer in book.customers():
+        #     customer.delete()
+        # if customer:= Customer.find_by_id(book.id_):
+        #     customer.delete()
+        #     print(f'\nCustomer {id_} deleted')
+
     else:
         print(f'\nBook ID: {id_} not found')
 
