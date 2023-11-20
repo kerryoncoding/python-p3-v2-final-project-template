@@ -75,8 +75,8 @@ class Book:
       """ Initialize a new Book instance and save the object to the database """
       book = cls(title, author)
       book.save()
-      return book
-   
+      return book    
+
    # skipping update
 
    def delete(self):
