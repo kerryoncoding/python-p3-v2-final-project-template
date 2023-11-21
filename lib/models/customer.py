@@ -88,8 +88,6 @@ class Customer:
       self.id = CURSOR.lastrowid
       type(self).all[self.id] = self
 
-# skipped update
-
    def delete(self):
       """Delete the table row corresponding to the current Customer instance,
       delete the dictionary entry, and reassign id attribute"""
@@ -102,10 +100,7 @@ class Customer:
       CURSOR.execute(sql, (self.id,))
       CONN.commit()
 
-      # Delete the dictionary entry using id as the key
       del type(self).all[self.id]
-
-      # Set the id to None
       self.id = None
 
    @classmethod
@@ -119,15 +114,12 @@ class Customer:
    def instance_from_db(cls, row):
       """Return a Customer object having the attribute values from the table row."""
 
-      # Check the dictionary for  existing instance using the row's primary key
       customer = cls.all.get(row[0])
       if customer:
-         # ensure attributes match row values in case local instance was modified
          customer.firstname = row[1]
          customer.lastname = row[2]
          customer.book_id = row[3]
       else:
-         # not in dictionary, create new instance and add to dictionary
          customer = cls(row[1], row[2], row[3])
          customer.id = row[0]
          cls.all[customer.id] = customer
