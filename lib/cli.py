@@ -6,14 +6,12 @@ from helpers import (
     find_book_by_title,
     find_book_by_id,
     create_book,
-    # update_book,
     delete_book,
     list_customers,
     find_customer_by_firstname,
     find_customer_by_lastname,
     find_customer_by_id,
     create_customer,
-    # update_customer,
     delete_customer,
     list_book_customers
 )
@@ -33,8 +31,6 @@ def main():
             find_book_by_id()
         elif choice == "4":
             create_book()
-        # elif choice == "x":
-        #     update_book()
         elif choice == "5":
             delete_book()
         elif choice == "6":
@@ -47,8 +43,6 @@ def main():
             find_customer_by_id()
         elif choice == "10":
             create_customer()
-        # elif choice == "x":``
-        #     update_customer()
         elif choice == "11":
             delete_customer()
         elif choice == "12":
@@ -67,14 +61,12 @@ def menu():
     print("2. Find book by title")
     print("3. Find book by id")
     print("4: Add book to on-sale list")
-    # print("x: Update book")
     print("5: Delete book from on-sale list")
     print("6. List all customers")
     print("7. Find customer by firstname")
     print("8. Find customer by lastname")
     print("9. Find customer by id")
     print("10: Create customer")
-    # print("x: Update customer")
     print("11: Delete customer")
     print("12: List all customers who bought book")
 
