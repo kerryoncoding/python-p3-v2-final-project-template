@@ -14,8 +14,6 @@ def reset_database():
    Customer.create_table()
 
    # Create seed data
-
-   #  what is customer_id used for?
    book1 = Book.create("The Hobbit", "JRR Tolkin")
    book2 = Book.create("Dracula", "Bram Stoker")
    book3 = Book.create("Alice in Wonderland", "Lewis Carroll")

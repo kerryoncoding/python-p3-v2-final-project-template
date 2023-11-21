@@ -2,10 +2,7 @@
 from models.book import Book
 from models.customer import Customer
 
-# def helper_1():
-#     print("Performing useful function#1.")
-
-
+# Book ...
 def exit_program():
     print(f"Goodbye!\n")
     exit()
@@ -36,29 +33,19 @@ def create_book():
     except Exception as exc:
         print("Error creating book: ", exc)
 
-# skipping update book
-
 def delete_book():
     id_ = input("Enter the book's id: ")
     if book := Book.find_by_id(id_):
-        # also get's rid of any customer who owns that book
+        # get's rid of any customer who owns that book
         for customer in book.customers():
             customer.delete()
         # gets rid of book with that ID
         book.delete()
         print(f'\nBook {id_} deleted\n')
-        # also get's rid of any customer who owns that book
-        # for customer in book.customers():
-        #     customer.delete()
-        # if customer:= Customer.find_by_id(book.id_):
-        #     customer.delete()
-        #     print(f'\nCustomer {id_} deleted')
-
     else:
         print(f'\nBook ID: {id_} not found')
 
-# Customers...
-
+# Customer...
 def list_customers():
     customers = Customer.get_all()
     print(f'\n')
@@ -89,8 +76,6 @@ def create_customer():
         print(f'\nSuccess: {customer}')
     except Exception as exc:
         print(f'\nError creating customer: ', exc)
-
-    # skipping update customer
 
 def delete_customer():
     id_ = input(f'\nEnter the customer\'s id: \n')
