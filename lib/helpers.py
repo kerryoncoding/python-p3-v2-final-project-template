@@ -21,11 +21,11 @@ def find_book_by_title():
     print(f'\n{book}') if book else print(f'\nBook title: "{title}" not found')
  
 
-# def find_book_by_id():
-#     # use a trailing underscore not to override the built-in id function
-#     id_ = input(f"\nEnter the book's id: ")
-#     book = Book.find_by_id(id_)
-#     print(f'\n{book}') if book else print(f'\nBook ID: {id_} not found')
+def find_book_by_id():
+    # use a trailing underscore not to override the built-in id function
+    id_ = input(f"\nEnter the book's id: ")
+    book = Book.find_by_id(id_)
+    print(f'\n{book}') if book else print(f'\nBook ID: {id_} not found')
 
 def create_book():
     title = input(f"\nEnter the book's title: ")
