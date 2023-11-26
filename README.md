@@ -8,9 +8,41 @@ Screenshots and links to resources that you used throughout are also useful to u
 a little more syntactically complicated. Only add these in if you're feeling comfortable with Markdown.
 
 ----------------------VVVVVV here  VVVVVV
+
+This file is for my Flatiron school phase 3 project. It implements a Python application that inlcudes a Command Line Interface.  It has Object-Relational Mapping functions for the classes of Book and Customer.  Book to Customer is a one-to-many relationship. 
+
+
 ## Description
 
-This file is for phase 3 project implements a Python application that inlcudes a Command Line Interface.  It implements Object-Relational Mapping functions for the classes of Book and Customer.  Book to Customer is a one-to-many relationship. 
+This file is for my Flatiron school phase 3 project. It implements a Python application that inlcudes a Command Line Interface.  It has Object-Relational Mapping functions for the classes of Book and Customer.  Book to Customer is a one-to-many relationship. 
+
+First run pipenv install and pipenv shell.
+Seed the database with the seed.py file:  python lib/seed.py
+
+Enter the Command Line Interface: python lib/cli.py
+
+The current list of available books on-sale will be displayed followed by the following options:
+
+    0. Exit the program
+        this will exit you out of the command line interface
+    1. List books for sale
+        this will list the current Available books on-sale
+    2. Find book by title
+        The user will be prompted to enter a title.  
+        If the title exists in the list of available books, then that book object will be displayed.  If it does not match, it will say that it is not found.
+    3. Find book by id
+        The user will be prompted to enter an id
+        If the id exists in the list of available books, then that book object will be displayed.  If it does not exist, it will say that it is not found.
+    4. Add book to on-sale list
+        The user will be prompted to enter the book Title. 
+        The user will be prompted to enter the book Author.
+        Both entries for Title and Author must be non-empty strings or an error will show and book object will not be created.
+        Prompt will say if book object is successfully created.  This adds book to the Available books on-sale list and will display above the options.
+    5. Delete book from on-sale list
+        The user will be prompted to enter book id.
+        If the id exists in the list of available books, then that book object will be deleted.  If it does not exist, it will say that it is not found.
+    6. 
+        
 
 ## Introduction
 
@@ -36,10 +68,6 @@ Note: The directory also includes two files named `CONTRIBUTING.md` and
 delete the files if you want.
 
 ---
-
-
-
-
 
 
 
